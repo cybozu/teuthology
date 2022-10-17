@@ -51,6 +51,7 @@ def host_shortname(hostname):
         return hostname.split('.', 1)[0]
 
 def canonicalize_hostname(hostname, user='ubuntu'):
+    log.debug(f"canonicalize_hostname '{hostname=}', '{config.lab_domain=}'")
     hostname_expr = hostname_expr_templ.format(
         lab_domain=config.lab_domain.replace('.', '\.'))
     match = re.match(hostname_expr, hostname)
@@ -67,6 +68,7 @@ def canonicalize_hostname(hostname, user='ubuntu'):
         shortname = host_shortname(hostname)
         user_ = user
 
+    log.debug(f"canonicalize_hostname '{user_=}', '{shortname=}'")
     user_at = user_.strip('@') + '@' if user_ else ''
     domain = config.lab_domain
     if domain and not shortname.endswith('.'):

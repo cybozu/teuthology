@@ -350,6 +350,7 @@ class Remote(RemoteShell):
     def __init__(self, name, ssh=None, shortname=None, console=None,
                  host_key=None, keep_alive=True):
         self.name = name
+        log.debug(f"Remote::__init__ name:'{self.name}'")
         if '@' in name:
             (self.user, hostname) = name.split('@')
             # Temporary workaround for 'hostname --fqdn' not working on some
@@ -383,6 +384,8 @@ class Remote(RemoteShell):
         if timeout:
             args['timeout'] = timeout
 
+        log.debug("Remote::connect")
+        log.debug(args)
         self.ssh = connection.connect(**args)
         return self.ssh
 
