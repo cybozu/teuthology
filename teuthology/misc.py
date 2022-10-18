@@ -15,6 +15,7 @@ import time
 import yaml
 import json
 import re
+import inspect
 from sys import stdin
 import pprint
 import datetime
@@ -51,7 +52,10 @@ def host_shortname(hostname):
         return hostname.split('.', 1)[0]
 
 def canonicalize_hostname(hostname, user='ubuntu'):
-    log.debug(f"canonicalize_hostname '{hostname=}', '{config.lab_domain=}'")
+    log.debug(f"canonicalize_hostname {hostname=}, {user=}, {config.lab_domain=}")
+    log.debug(inspect.stack())
+    log.debug(inspect.stack()[1].filename)
+    log.debug(inspect.stack()[1].function)
     hostname_expr = hostname_expr_templ.format(
         lab_domain=config.lab_domain.replace('.', '\.'))
     match = re.match(hostname_expr, hostname)
@@ -68,7 +72,7 @@ def canonicalize_hostname(hostname, user='ubuntu'):
         shortname = host_shortname(hostname)
         user_ = user
 
-    log.debug(f"canonicalize_hostname '{user_=}', '{shortname=}'")
+    log.debug(f"canonicalize_hostname {user_=}, {shortname=}")
     user_at = user_.strip('@') + '@' if user_ else ''
     domain = config.lab_domain
     if domain and not shortname.endswith('.'):

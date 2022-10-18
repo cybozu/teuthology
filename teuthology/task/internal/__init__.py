@@ -140,6 +140,7 @@ def timer(ctx, config):
 
 
 def add_remotes(ctx, config):
+    log.debug("add_remotes")
     """
     Create a ctx.cluster object populated with remotes mapped to roles
     """
@@ -152,6 +153,7 @@ def add_remotes(ctx, config):
     for name in ctx.config['targets'].keys():
         machs.append(name)
     for t, key in ctx.config['targets'].items():
+        log.debug(t)
         t = misc.canonicalize_hostname(t)
         try:
             if ctx.config['sshkeys'] == 'ignore':
