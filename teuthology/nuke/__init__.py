@@ -322,6 +322,12 @@ def nuke_helper(ctx, should_unlock, keep_logs, should_reboot):
         provision.pelagos.park_node(host)
         return
     elif remote.is_container:
+        import inspect
+        import pprint
+        log.debug('@@@BBBBBB')
+        log.debug(f'{remote.is_container=}')
+        log.debug(pprint.pformat(ctx))
+        log.debug(pprint.pformat(inspect.stack()))
         remote.run(
             args=['sudo', '/testnode_stop.sh'],
             check_status=False,

@@ -707,7 +707,7 @@ class Remote(RemoteShell):
                 args="test -f /run/.containerenv -o -f /.dockerenv",
                 check_status=False,
             ).returncode)
-        log.debug('@@@')
+        log.debug('@@@AAAAAAAA')
         log.debug(f'{self._is_container=}')
         log.debug(pprint.pformat(self))
         log.debug(pprint.pformat(inspect.stack()))
