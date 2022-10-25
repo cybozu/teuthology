@@ -22,6 +22,8 @@ import os
 import pwd
 import tempfile
 import netaddr
+import inspect
+import pprint
 
 log = logging.getLogger(__name__)
 
@@ -705,6 +707,10 @@ class Remote(RemoteShell):
                 args="test -f /run/.containerenv -o -f /.dockerenv",
                 check_status=False,
             ).returncode)
+        log.debug('@@@')
+        log.debug(f'{self._is_container=}')
+        log.debug(pprint.pformat(self))
+        log.debug(pprint.pformat(inspect.stack()))
         return self._is_container
 
     @property
