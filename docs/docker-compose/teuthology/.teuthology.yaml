@@ -7,3 +7,4 @@ teuthology_path: /teuthology
 archive_base: /archive_dir
 reserve_machines: 0
 lab_domain: ''
+ceph_cm_ansible_git_url: https://github.com/cybozu/ceph-cm-ansible.git
