@@ -361,7 +361,8 @@ class Remote(RemoteShell):
             self.user = pwd.getpwuid(os.getuid()).pw_name
             hostname = name
         self._shortname = shortname or host_shortname(hostname)
-        self._host_key = host_key
+        # skip host key check
+        self._host_key = None
         self.keep_alive = keep_alive
         self._console = console
         self.ssh = ssh
