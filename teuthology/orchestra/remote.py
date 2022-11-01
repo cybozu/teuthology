@@ -364,7 +364,13 @@ class Remote(RemoteShell):
             self.user = pwd.getpwuid(os.getuid()).pw_name
             hostname = name
         self._shortname = shortname or host_shortname(hostname)
-        self._host_key = host_key
+        if host_key:
+            import inspect
+            import pprint
+            log.debug(f'{host_key=}')
+            log.debug(pprint.pformat(self))
+            log.debug(pprint.pformat(inspect.stack()))
+        self._host_key = None
         self.keep_alive = keep_alive
         self._console = console
         self.ssh = ssh
