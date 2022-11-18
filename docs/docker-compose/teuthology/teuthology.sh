@@ -15,6 +15,11 @@ else
     CUSTOM_CONF=/teuthology/containerized_node.yaml
 fi
 export MACHINE_TYPE=${MACHINE_TYPE:-testnode}
+
+# necessary to connect to nodes
+# TODO(mukai): why?
+export USER=ubuntu
+
 if [ -z "$TEUTHOLOGY_WAIT" ]; then
     if [ -n "$TEUTH_BRANCH" ]; then
       TEUTH_BRANCH_FLAG="--teuthology-branch $TEUTH_BRANCH"
