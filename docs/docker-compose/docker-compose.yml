@@ -79,7 +79,7 @@ services:
       context: ./testnode
       dockerfile: ./Dockerfile
     deploy:
-      replicas: 3
+      replicas: 0
     depends_on:
         paddles:
             condition: service_healthy
